@@ -1,0 +1,30 @@
+<div class="container-fluid ">
+    <p class="text-center text-dark fs-1"> Historial</p>
+    <table class="table table-striped ">
+        <thead>
+          <tr >
+            <th scope="col">Numero</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Vehiculo</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">lavado</th>
+            <th scope="col">Aceite</th>
+            <th scope="col">Alineación</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let cliente of clienteLista">
+          <tr>
+            <th scope="row">{{cliente.id}}</th>
+            <td>{{cliente.nombre}}</td>
+            <td>{{cliente.vehiculo}}</td>
+            <td>${{cliente.precio}}</td>
+            <td>{{cliente.fecha}}</td>
+            <td>{{cliente.lavado.opcion}}</td>
+            <td>{{cliente.aceite.opcion}}</td>
+            <td>{{cliente.alineacion.opcion}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>

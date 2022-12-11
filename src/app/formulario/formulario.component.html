@@ -1,0 +1,66 @@
+<div class="container-fluid ">
+  <div class="w-50  mx-auto mt-3 p-0">
+    <div class="alert alert-danger" role="alert" *ngFor="let error of errorMensaje | keyvalue">
+      {{error.value}}
+     </div>
+    <form (ngSubmit)="guardar(form)" #form="ngForm">
+      <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            #nombre="ngModel"
+            type="text"
+            class="form-control"
+            id="nombre"
+            required
+            name="nombre"
+            [(ngModel)]="cliente.nombre"/>
+          </div>
+          <p *ngIf="nombre.errors && nombre.touched" class="text-danger"> El campo es requerido</p>
+          <div class="mb-3">
+              <label for="vehiculo" class="form-label">Vehiculo/patente</label>
+              <input
+              #vehiculo="ngModel"
+                type="text"
+                class="form-control"
+                name="vehiculo"
+                id="vehiculo"
+                required
+                pattern="([A-Z]{3}[0-9]{3})|([0-9]{3}[A-Z]{4})"
+                [(ngModel)]="cliente.vehiculo"/>
+              </div>
+              <p *ngIf="vehiculo.errors && vehiculo.touched && vehiculo.dirty"  class="text-danger">La patente tiene que respetar el formato AAA111 O AA111AA</p>
+                  <div class="mb-3">
+                      <label for="fecha" class="form-label">fecha</label>
+                      <input
+                      #fecha="ngModel"
+                        type="date"
+                        name="fecha"
+                        [(ngModel)]="cliente.fecha"
+                        class="form-control"
+                        required
+                        id="fecha"/>
+                      </div>
+                      <p *ngIf="fecha.errors && fecha.touched"  class="text-danger">Campo requerido</p>
+                      <label class="form-label">Lavado</label>
+                      <select class="form-select" name="lavado" [(ngModel)]="cliente.lavado.id" aria-label="Default select example"  >
+                          <option *ngFor="let lavado of lavadoLista" [value]="lavado.id">{{lavado.opcion}}</option>
+                        </select>
+                        <label class="form-label">Alineacion</label>
+                        <select class="form-select mt-3"  name="alineacion"  aria-label="Default select example" [(ngModel)]="cliente.alineacion.id" >
+                          <option *ngFor="let ali of alineacionLista" [value]="ali.id">{{ali.opcion}}</option>
+                        </select>
+
+                        <label class="form-label">aceite</label>
+                        <select class="form-select mt-3" name="aceite"  aria-label="Default select example" [(ngModel)]="cliente.aceite.id" >
+                          <option *ngFor="let aceite of aceiteLista" [value]="aceite.id">{{aceite.opcion}}</option>
+                        </select>
+
+                       
+                        <div class="input-group col-md-8 mt-3">
+                          <button  type="submit" class="btn btn-outline-primary" [disabled]="form.invalid">
+                            Guardar
+                          </button>
+                        </div>
+  </form>
+  </div>
+</div>
